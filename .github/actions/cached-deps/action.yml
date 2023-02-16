@@ -1,9 +1,16 @@
 name : 'Get & Cache Dependencies'
 description : 'Get the dependencies (via npm) and cache them.'
+inputs : 
+  caching : 
+    description : 'Whether to cache dependencies or not.'
+    required    : false
+    default     : 'true'
+
 runs : 
   using : 'composite'
   steps : 
   - name: Cache dependencies
+    if : inputs.caching == 'true' 
     id: cache
     uses: actions/cache@v3
     with:
